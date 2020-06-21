@@ -1,0 +1,7 @@
+node_modules/
+*.env
+TO_DO.txt
+.vscode/
+.cache/
+.dist/
+dev-data/
