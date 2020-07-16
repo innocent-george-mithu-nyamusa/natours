@@ -1,6 +1,7 @@
 // eslint-disable-next-line node/no-missing-require
 
 const nodemailer = require('nodemailer');
+const pepipostTransport = require('nodemailer-pepipost-transport');
 const pug = require('pug');
 const htmlToText = require('html-to-text');
 
@@ -14,13 +15,13 @@ module.exports = class Email {
 
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
-      return nodemailer.createTransport({
-        service: 'SendGrid',
-        auth: {
-          user: process.env.SENDGRID_USERNAME,
-          pass: process.env.SENDGRID_PASSWORD
-        }
-      });
+      return nodemailer.createTransport(
+        pepipostTransport({
+          auth: {
+            api_key: `${process.env.PEPIPOST_API_KEY}`
+          }
+        })
+      );
     }
 
     return nodemailer.createTransport({
