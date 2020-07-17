@@ -6,13 +6,13 @@ export const displayMap = locations => {
     'pk.eyJ1IjoiaW5ub2NlbnQtZ2VvcmdlLW1pdGh1LW55YW11c2EiLCJhIjoiY2tiaTBwYjRoMGFucDJ6cnBvNWhmMWN5dyJ9.1vNTdbLQ3H_vL-sjWZNRzA';
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style:
+      'mapbox://styles/innocent-george-mithu-nyamusa/ckckke3r529si1jo549k51662',
     ScrollZoom: false
     // center: [-118.113491, 34.111745],
     // zoom: 10,
     // interactive: false
   });
-
 
   const bounds = new mapboxgl.LngLatBounds();
   locations.array.forEach(loc => {
