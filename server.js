@@ -5,18 +5,11 @@ dotenv.config({ path: './config.env' }); //THIS IS HERE BECAUSE :*** the environ
 
 const app = require('./app');
 
-// const DB = process.env.DATABASE.replace(
-//   '<password>',
-//   process.env.DATABASE_PASSWORD
-// ); ///////////////////////////////////////THIS IS OUR DB CONNECTION STRING WE ARE READING FROM THE PROCESS VARS AND WE ARE REPLACEING THE PLACEHOLDER
-/////////////////////////////////////////////********* BE USRE TO UNCOMMENT THIS WHEN CONNECTED ONLINE *********************************************** */
-
-/////////////////////////////////////////******************************************************************************************************************/
-/********************************************************************* DB Connection **********************************************************************/
-/////////////////////////////////////////I AM CONNECTING USING process.env.DATABASE_LOCAL to use my local DB, *******Don't forget to switch to DB when using
-mongoose
-  .connect(process.env.DATABASE_LOCAL, {
-    // .connect(DB, {
+const DB = process.env.DATABASE.replace(
+   '<PASSWORD>',
+   process.env.DATABASE_PASSWORD
+);
+mongoose.connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
