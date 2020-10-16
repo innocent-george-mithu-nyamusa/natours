@@ -6,10 +6,12 @@ dotenv.config({ path: './config.env' }); //THIS IS HERE BECAUSE :*** the environ
 const app = require('./app');
 
 const DB = process.env.DATABASE.replace(
-   '<PASSWORD>',
-   process.env.DATABASE_PASSWORD
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
 );
-mongoose.connect(DB, {
+
+mongoose
+  .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
