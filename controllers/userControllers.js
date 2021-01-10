@@ -18,7 +18,7 @@ const factory = require('./factoryControllers');
 //     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
 //   }
 // });
-const multerStorage = multer.diskStorage();
+const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) cb(null, true);
@@ -30,6 +30,7 @@ const upload = multer({
   storage: multerStorage,
   fileFilter: multerFilter
 });
+
 exports.uploadUserPhoto = upload.single('photo');
 
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {

@@ -1,5 +1,5 @@
 const express = require('express');
-const tourController = require('../contollers/tourController');
+const tourController = require('./../controllers/tourController');
 const authController = require('./../controllers/authController');
 const reviewRouter = require('./../routes/reviewRoutes');
 
@@ -43,8 +43,8 @@ router
   .patch(
     authController.protect,
     authController.restrictAccessTo('admin', 'lead-guide'),
-    authController.uploadTourImages,
-    authController.resizetourImages,
+    tourController.uploadTourImages,
+    tourController.resizeTourimages,
     tourController.updateTour
   )
   .delete(

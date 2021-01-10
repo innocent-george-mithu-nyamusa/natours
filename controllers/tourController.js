@@ -1,12 +1,13 @@
+const multer = require('multer');
+const sharp = require('sharp');
+
 const Tour = require('../models/tourModels');
 
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./factoryControllers');
 const AppError = require('../utils/appError');
 
-const multer = require('multer');
-const sharp = require('sharp');
-const multerStorage = multer.diskStorage();
+const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) cb(null, true);

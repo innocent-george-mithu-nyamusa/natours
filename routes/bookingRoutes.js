@@ -1,5 +1,5 @@
 const express = require('express');
-const bookingController = require('../contollers/tourController');
+const bookingController = require('./../controllers/bookingController');
 const authController = require('./../controllers/authController');
 
 const router = express.Router();
@@ -18,6 +18,6 @@ router
   .route('/:id')
   .get(bookingController.getBooking)
   .patch(bookingController.updateBooking)
-  .delete(bookingController.deleteOne);
+  .delete(bookingController.deleteBooking);
 
 module.exports = router;

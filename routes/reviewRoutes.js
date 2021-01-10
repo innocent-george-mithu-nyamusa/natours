@@ -1,6 +1,6 @@
 const express = require('express');
-const reviewController = require('./../contollers/reviewControllers');
-const authController = require('./../contollers/authController');
+const reviewController = require('./../controllers/reviewControllers');
+const authController = require('./../controllers/authController');
 
 const router = express.Router({ mergeParams: true });
 
@@ -13,6 +13,7 @@ router
     reviewController.setTourUserIds,
     reviewController.createReview
   );
+
 router
   .route('/:id')
   .get(reviewController.getReview)

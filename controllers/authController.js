@@ -12,7 +12,7 @@ const signToken = id => {
   });
 };
 
-const createSendToken = (user, statusCode,req res) => {
+const createSendToken = (user, statusCode, req, res) => {
   //create token with the payload of _id
   const token = signToken(user._id);
 
