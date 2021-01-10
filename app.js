@@ -109,10 +109,10 @@ app.use(cookieParser());
 // });
 
 //ROUTES
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
-app.use('/api/v1/views', viewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
 app.all('*', (req, res, next) => {
@@ -120,7 +120,7 @@ app.all('*', (req, res, next) => {
   //   status: 'fail',
   //   message: `Cannot Find ${req.originalUrl} on this server!`
   // });
-
+  console.log('handle ');
   next(new AppError(`Cannot Find ${req.originalUrl} on this server!`));
 });
 
