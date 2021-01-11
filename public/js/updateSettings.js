@@ -1,4 +1,5 @@
 //Update user Settings
+/* eslint-disable */
 import axios from 'axios';
 import { showAlert } from './alerts';
 

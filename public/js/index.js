@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-// import '@babel/polyfill' TODO: ;
+import '@babel/polyfill';
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
@@ -36,11 +36,11 @@ if (updateForm) {
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
 
-    await updateSettings(form, 'data');
+    updateSettings(form, 'data');
   });
 }
 if (passwordForm) {
-  passwordForm.addEventListener('submit', e => {
+  passwordForm.addEventListener('submit', async e => {
     e.preventDefault();
 
     const passwordCurrent = document.getElementById('password-current').value;

@@ -1,5 +1,5 @@
 /* eslint-disable */
-// import axios from 'axios' TODO:;
+import axios from 'axios';
 import { showAlert } from './alerts';
 
 export const login = async (email, password) => {
@@ -36,3 +36,12 @@ export const logout = async () => {
     showAlert('error', 'Error logging out! try Again');
   }
 };
+
+
+document.querySelector('.form').addEventListener('submit', e => {
+ e.preventDefault();
+ const email = document.getElementById('email').value;
+ const password = document.getElementById('password').value;
+
+ login(email, password);
+})
