@@ -2,10 +2,10 @@ extends base
 
 mixin navItem(link, text, icon, active)
     li(class=`${active ? 'side-nav--active': ''}`)
-     a(href=`${link}`)
-        svg
-        use(xlink:href=`img/icons.svg#icon-${icon}`)
-        | #{text}
+        a(href=`${link}`)
+            svg
+            use(xlink:href=`/img/icons.svg#icon-${icon}`)
+            | #{text}
 
 block content
     main.main
@@ -36,8 +36,8 @@ block content
                     label.form__label(for='email') Email address
                     input#email.form__input(type='email', value=`${user.email}`, required)
                 .form__group.form__photo-upload
-                    img.form__user-photo(src=`img/users/${user.photo}`, alt=`${user.name} Photo`)
-                    input.form__upload(type='file', accept='image/*', id='photo' name='photo')
+                    img.form__user-photo(src=`/img/users/${user.photo}`, alt=`${user.name} Photo`)
+                    input.form__upload(type='file' accept='image/*' id='photo' name='photo')
                     label(for='photo') Choose new photo
                 .form__group.right
                     button.btn.btn--small.btn--green Save settings
@@ -47,12 +47,12 @@ block content
                 form.form.form-user-password
                 .form__group
                     label.form__label(for='password-current') Current password
-                    input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    input#password-current.form__input(type='password' placeholder='••••••••', required, minlength='8')
                 .form__group
                     label.form__label(for='password') New password
-                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    input#password.form__input(type='password' placeholder='••••••••', required, minlength='8')
                 .form__group.ma-bt-lg
                     label.form__label(for='password-confirm') Confirm password
-                    input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    input#password-confirm.form__input(type='password' placeholder='••••••••', required, minlength='8')
                 .form__group.right
                     button.btn.btn--small.btn--green Save password
