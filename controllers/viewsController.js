@@ -18,7 +18,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   //.1) Get data from collection
   const tours = await Tour.find();
   //.2) Build template
-  console.log(tours[0].locations[0].description);
+  // console.log(tours);
   //.3) render the template using data from 1
   res.status(200).render('overview', {
     title: 'All tours',
@@ -27,13 +27,15 @@ exports.getOverview = catchAsync(async (req, res, next) => {
 });
 
 exports.getTour = catchAsync(async (req, res, next) => {
-  let filter = {};
-  if (req.params.slug) filter = { slug: req.params.slug };
   //.1) get tour document from collection
-  const tour = await Tour.findOne(filter).populate({
+  const tour = await Tour.findOne({ slug: req.params.slug });
+
+  tour.populate({
     path: 'reviews',
     fields: 'review rating user'
   });
+
+  console.log(tour);
 
   if (!tour) {
     return new AppError('There is no tour with that name', 404);

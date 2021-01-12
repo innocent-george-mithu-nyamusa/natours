@@ -50,8 +50,7 @@ exports.createOne = Model =>
 exports.getone = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     let query = Model.findById(req.params.id);
-    if (popOptions) query = query24
-    .populate(popOptions);
+    if (popOptions) query = query.populate(popOptions);
     const doc = await query;
 
     //Document.findOne({_id: re})

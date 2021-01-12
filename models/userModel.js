@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
@@ -7,15 +6,11 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'A user must have a name'],
-    unique: true,
-    trim: true,
-    maxlegth: [40, 'The name value must not exceed 40 values'],
-    minlegth: [2, 'The name value must at least have 2 characters']
+    required: [true, 'Please tell us your name!']
   },
   email: {
     type: String,
-    required: [true, 'A User must have an email'],
+    required: [true, 'Please provide your email'],
     unique: true,
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
@@ -28,7 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'A user must have a Password'],
+    required: [true, 'Please provide a password'],
     minlegth: 8,
     select: false
   },
@@ -38,7 +33,8 @@ const userSchema = new mongoose.Schema({
     validate: {
       validator: function(val) {
         return val === this.password;
-      }
+      },
+      message: 'Passwords are not the same!'
     }
   },
   passwordChangedAt: Date,
@@ -46,7 +42,8 @@ const userSchema = new mongoose.Schema({
   passwordResetExpireAt: Date,
   active: {
     type: Boolean,
-    default: true
+    default: true,
+    select: false
   }
 });
 

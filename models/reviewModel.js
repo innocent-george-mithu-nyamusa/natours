@@ -52,6 +52,7 @@ reviewSchema.pre('/^find/', function(next) {
   });
   next();
 });
+
 reviewSchema.statics.calcAverageratings = async function(tourId) {
   const stats = await this.aggregate([
     {

@@ -7,7 +7,7 @@ const router = express.Router();
 
 // router.param('id', tourController.checkID);
 
-router.route('/:tourId/previews', reviewRouter);
+router.route('/:tourId/reviews', reviewRouter);
 
 router.route('/tour-stats').get(tourController.getTourStats);
 router

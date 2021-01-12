@@ -32,12 +32,12 @@ const tourSchema = new mongoose.Schema(
         message: 'Difficulty can only be easy, medium and Difficulty'
       }
     },
-    rating: {
-      type: Number,
-      default: 4.5,
-      min: [1, 'Rating must be above 1.0'],
-      max: [5, 'Rating must be below 5.0']
-    },
+    // rating: {
+    //   type: Number,
+    //   default: 4.5,
+    //   min: [1, 'Rating must be above 1.0'],
+    //   max: [5, 'Rating must be below 5.0']
+    // },
     ratingsAverage: {
       type: Number,
       default: 4.5,
@@ -85,7 +85,7 @@ const tourSchema = new mongoose.Schema(
     startDates: [Date],
     secretTour: {
       type: Boolean,
-      default: true
+      default: false
     },
     startLocation: {
       type: {
@@ -117,6 +117,7 @@ const tourSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
+
 tourSchema.index({ price: 1, ratingsAverage: -1 });
 tourSchema.index({ slug: 1 });
 tourSchema.index({ startLocation: '2dsphere' });
@@ -126,7 +127,7 @@ tourSchema.virtual('durationWeeks').get(function() {
 });
 
 //Virtual populate
-tourSchema.virtual('review', {
+tourSchema.virtual('reviews', {
   ref: 'Review',
   foreignField: 'tour',
   localField: '_id'
@@ -159,12 +160,12 @@ tourSchema.pre('save', function(next) {
 // });
 
 //QUERY MIDDLEWARE
-// tourSchema.pre(/^find/, function(next) {
-//   this.find({ secretTour: { $ne: true } });
+tourSchema.pre(/^find/, function(next) {
+  this.find({ secretTour: { $ne: true } });
 
-//   this.start = Date.now();
-//   next();
-// });
+  this.start = Date.now();
+  next();
+});
 
 tourSchema.pre('/^find/', function(next) {
   this.populate({
