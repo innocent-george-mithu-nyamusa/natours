@@ -23,11 +23,14 @@ if (loginForm) {
   loginForm.addEventListener('submit', e => {
     e.preventDefault();
     //values
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('email').value; 
     const password = document.getElementById('password').value;
     login(email, password);
   });
 }
+
+if (logoutBtn) logoutBtn.addEventListener('click', logout);
+
 if (updateForm) {
   updateForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -42,6 +45,7 @@ if (updateForm) {
 if (passwordForm) {
   passwordForm.addEventListener('submit', async e => {
     e.preventDefault();
+    document.querySelector('.btn--save-password').textContent = 'Updating...';
 
     const passwordCurrent = document.getElementById('password-current').value;
     const password = document.getElementById('password').value;
@@ -49,7 +53,7 @@ if (passwordForm) {
 
     await updateSettings({ passwordCurrent, password, passwordConfirm }, 'password');
 
-
+    document.querySelector('.btn--save-password').textContent = 'Save password';
     document.getElementById('password-current').value = '';
     document.getElementById('password').value = '';
     document.getElementById('password-confirm').value = '';
@@ -57,7 +61,7 @@ if (passwordForm) {
 }
 
 if (bookBtn) bookBtn.addEventListener('click', e=>{
-  e.target.textContetent = 'Processing...'
+  e.target.textContent = 'Processing...';
   const {tourId} = e.target.dataset;
   bookTour(tourId)
 });
