@@ -18,7 +18,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   //.1) Get data from collection
   const tours = await Tour.find();
   //.2) Build template
-  console.log(tours);
+  console.log(tours[0].locations[0].description);
   //.3) render the template using data from 1
   res.status(200).render('overview', {
     title: 'All tours',
